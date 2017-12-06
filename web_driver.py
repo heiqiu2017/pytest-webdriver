@@ -7,9 +7,8 @@ class Init_driver:
     def __init__(self):
         self.browser_name = Oper().getConfig("browser","browser_lis")
         print "self.browser_name:>>>>>>>>",self.browser_name
-
-        if isinstance(eval(self.browser_name),str):
-            self.driver = self.init_driver(eval(self.browser_name))
+        
+        #config读出的value默认字符串，a="x" eval(a)会报错，config默认写入[x]方式
         if isinstance(eval(self.browser_name),list):
             self.driver = [self.init_driver(i.strip()) for i in eval(self.browser_name)]
 
